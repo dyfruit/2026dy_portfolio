@@ -411,5 +411,20 @@ document.getElementById('logoBtn').addEventListener('click', (e) => {
   goToSlide(0);
 });
 
+
+// 모바일 프로젝트 설명(INFO) 열기/닫기 토글
+const modalInfoToggle = document.getElementById('modalInfoToggle');
+if (modalInfoToggle) {
+  modalInfoToggle.addEventListener('click', () => {
+    const isExpanded = modalInfoHeader.classList.toggle('is-expanded');
+    modalInfoToggle.textContent = isExpanded ? 'INFO ▲' : 'INFO ▼';
+    modalInfoToggle.setAttribute('aria-expanded', String(isExpanded));
+  });
+}
+modalInfoHeader.classList.remove('is-expanded');
+  if (modalInfoToggle) {
+    modalInfoToggle.textContent = 'INFO ▼';
+    modalInfoToggle.setAttribute('aria-expanded', 'false');
+  }
 // 실행
 initPortfolio();
