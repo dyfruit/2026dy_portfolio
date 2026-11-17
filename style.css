@@ -1,0 +1,611 @@
+/* =========================================
+   Reset & Base Variables
+   ========================================= */
+:root {
+  --bg-color: #ffffff;
+  --text-primary: #111111;
+  --text-muted: #b0b0b0;
+  --border-color: #e5e5e5;
+  --font-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.mono-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   Fixed Header & Footer
+   ========================================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 36px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.site-header a,
+.site-header button {
+  pointer-events: auto;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.top-nav {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-link {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--text-primary);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 40;
+  pointer-events: none;
+  color: #444444;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+/* =========================================
+   Left Dial List & Counter
+   ========================================= */
+.left-panel {
+  position: fixed;
+  left: 48px;
+  top: 160px;
+  bottom: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.dial-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: auto 0;
+  pointer-events: auto;
+}
+
+.dial-item-btn {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-align: left;
+  transition: all 0.35s var(--ease-smooth);
+  transform-origin: left center;
+}
+
+.dial-item-btn:hover {
+  color: #666666;
+}
+
+.dial-item-btn.is-active {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin: 4px 0;
+}
+
+.counter {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* =========================================
+   Right View Switcher
+   ========================================= */
+.right-panel {
+  position: fixed;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+}
+
+.view-switcher {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.view-btn {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.view-btn.is-active {
+  color: var(--text-primary);
+  font-weight: 700;
+  border-bottom-color: var(--text-primary);
+}
+
+/* =========================================
+   Center Linear Vertical Photo-Wall
+   ========================================= */
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.photowall-track {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  transition: transform 0.65s var(--ease-smooth);
+  will-change: transform;
+}
+
+.project-card {
+  position: relative;
+  width: clamp(360px, 27vw, 520px);
+  aspect-ratio: 16 / 9;
+  transition: width 0.65s var(--ease-smooth), opacity 0.65s var(--ease-smooth);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.project-card.is-active {
+  width: clamp(720px, 56vw, 1080px);
+  z-index: 5;
+}
+
+.project-card-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f4f4f4;
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.project-card.is-active:hover img {
+  transform: scale(1.02);
+}
+
+/* 인덱스 라벨 (1), (2) 좌우 교차 배치 - 카드 내부 고정으로 겹침 방지 */
+.card-index {
+  position: absolute;
+  top: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #555555;
+}
+
+.project-card:nth-child(odd) .card-index {
+  left: -38px;
+}
+
+.project-card:nth-child(even) .card-index {
+  right: -38px;
+}
+
+.scroll-hint {
+  position: fixed;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #888888;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* =========================================
+   LIST View Mode
+   ========================================= */
+.list-view {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  z-index: 30;
+  padding: 150px 220px;
+  overflow-y: auto;
+}
+
+.list-view.is-hidden {
+  display: none;
+}
+
+.list-row {
+  display: grid;
+  grid-template-columns: 70px 1.4fr 1fr 120px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: padding-left 0.25s ease;
+}
+
+.list-row:hover {
+  padding-left: 12px;
+}
+
+.list-row-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.list-row-role {
+  font-size: 13px;
+  color: #666666;
+}
+
+.list-row-year {
+  text-align: right;
+  color: #666666;
+}
+
+/* =========================================
+   Detail Modal Popup
+   ========================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.72);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  width: min(1140px, 92vw);
+  height: 90vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modal-topbar {
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.modal-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.modal-top-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.modal-top-sub {
+  font-size: 12px;
+  color: #777777;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-nav-btn:hover,
+.modal-close-btn:hover {
+  text-decoration: underline;
+}
+
+.modal-close-btn {
+  font-weight: 700;
+}
+
+/* ★ 상단 고정 다크 개요 헤더 */
+.modal-info-header {
+  padding: 28px 40px;
+  background: #141414;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 48px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #262626;
+}
+
+.info-left-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.info-main-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  word-break: keep-all;
+}
+
+.info-meta-table {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 5px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #cccccc;
+}
+
+.info-meta-table .meta-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.info-right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.overview-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.overview-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #444444;
+}
+
+.overview-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #d8d8d8;
+  word-break: keep-all;
+}
+
+/* ★ 상세 이미지 스크롤 본문 영역 */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+.modal-image-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* About/Contact 서브 모달 */
+.info-dialog {
+  height: auto;
+  max-height: 85vh;
+}
+
+.info-modal-content {
+  padding: 56px 48px;
+}
+
+.info-headline {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+}
+
+.info-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #333333;
+  margin-bottom: 24px;
+}
+
+.info-skills {
+  color: #777777;
+}
+
+.info-email {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--text-primary);
+  padding-bottom: 4px;
+}
+
+/* =========================================
+   Responsive (Tablet & Mobile)
+   ========================================= */
+@media (max-width: 960px) {
+
+  .site-header,
+  .site-footer {
+    padding: 20px 24px;
+  }
+
+  .left-panel {
+    left: 24px;
+    top: 90px;
+    bottom: 90px;
+  }
+
+  .dial-list {
+    display: none;
+  }
+
+  .right-panel {
+    right: 24px;
+  }
+
+  .project-card {
+    width: 240px;
+  }
+
+  .project-card.is-active {
+    width: 78vw;
+  }
+
+  .list-view {
+    padding: 110px 24px;
+  }
+
+  .list-row {
+    grid-template-columns: 44px 1fr 70px;
+  }
+
+  .list-row-role {
+    display: none;
+  }
+
+  .modal-info-header {
+    grid-template-columns: 1fr;
+    padding: 20px 24px;
+    gap: 20px;
+  }
+
+  .info-main-title {
+    font-size: 20px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

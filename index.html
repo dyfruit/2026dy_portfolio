@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAYOUNG — Portfolio</title>
+  <!-- Pretendard & JetBrains Mono 폰트 로드 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 상단 고정 헤더 -->
+  <header class="site-header">
+    <a href="#" class="logo" id="logoBtn">DAYOUNG</a>
+    <nav class="top-nav">
+      <button type="button" class="nav-link" data-page="contact">CONTACT</button>
+      <button type="button" class="nav-link" data-page="about">ABOUT</button>
+      <button type="button" class="nav-link" data-page="archive">ARCHIVE</button>
+    </nav>
+  </header>
+
+  <!-- 좌측 고정 영역: 타이틀 연도 + 다이얼 리스트 + 카운터 -->
+  <aside class="left-panel">
+    <p class="mono-caption">SELECTED WORK, 2022–26</p>
+
+    <ul class="dial-list" id="dialList" aria-label="프로젝트 목록">
+      <!-- script.js에서 자동 생성 -->
+    </ul>
+
+    <div class="counter mono-caption">
+      <span id="currentIndex">01</span> / <span id="totalIndex">08</span>
+    </div>
+  </aside>
+
+  <!-- 우측 고정 영역: LIST / GALLERY 뷰 스위처 -->
+  <aside class="right-panel">
+    <div class="view-switcher">
+      <button type="button" class="view-btn" data-view="list">LIST</button>
+      <button type="button" class="view-btn is-active" data-view="gallery">GALLERY</button>
+    </div>
+  </aside>
+
+  <!-- 메인 뷰포트: 1) 포토월 갤러리 뷰 -->
+  <main class="viewport" id="galleryView">
+    <div class="photowall-track" id="photowallTrack">
+      <!-- script.js에서 일렬 세로 트랙 자동 생성 -->
+    </div>
+    <p class="scroll-hint mono-caption" id="scrollHint">SCROLL OR DRAG TO EXPLORE ↓</p>
+  </main>
+
+  <!-- 메인 뷰포트: 2) LIST 뷰 (우측 LIST 클릭 시 전환) -->
+  <section class="list-view is-hidden" id="listView">
+    <div class="list-container" id="listContainer">
+      <!-- script.js에서 자동 생성 -->
+    </div>
+  </section>
+
+  <!-- 하단 고정 푸터 -->
+  <footer class="site-footer">
+    <div class="footer-left mono-caption">
+      WEB DESIGNER &amp; PUBLISHER<br />
+      UI/UX &amp; VISUAL IDENTITIES
+    </div>
+    <div class="footer-right mono-caption">
+      BASED IN BUSAN<br />
+    </div>
+  </footer>
+
+<!-- 프로젝트 상세 모달 팝업 -->
+<div class="modal-backdrop" id="projectModal" aria-hidden="true">
+  <div class="modal-dialog" role="dialog" aria-modal="true">
+    <div class="modal-topbar">
+      <div class="modal-meta-bar">
+        <span class="mono-caption" id="modalIndex">(01)</span>
+        <strong class="modal-top-title" id="modalTitle">프로젝트 제목</strong>
+        <span class="modal-top-sub" id="modalSub">UI/UX Design · 2022</span>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="modal-nav-btn mono-caption" id="modalPrevBtn">← PREV</button>
+        <button type="button" class="modal-nav-btn mono-caption" id="modalNextBtn">NEXT →</button>
+        <button type="button" class="modal-close-btn mono-caption" id="modalCloseBtn">CLOSE [✕]</button>
+      </div>
+    </div>
+
+    <!-- ★ 스크롤 시에도 상단에 고정되는 다크 프로젝트 개요 헤더 -->
+    <div class="modal-info-header" id="modalInfoHeader"></div>
+
+    <div class="modal-body" id="modalBody">
+      <div class="modal-image-wrap">
+        <img src="" alt="" id="modalDetailImg" />
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ABOUT / CONTACT 서브 모달 -->
+  <div class="modal-backdrop" id="infoModal" aria-hidden="true">
+    <div class="modal-dialog info-dialog" role="dialog" aria-modal="true">
+      <div class="modal-topbar">
+        <span class="mono-caption" id="infoModalLabel">ABOUT / CONTACT</span>
+        <button type="button" class="modal-close-btn mono-caption" id="infoCloseBtn">CLOSE [✕]</button>
+      </div>
+      <div class="info-modal-content">
+        <h2 class="info-headline">Clear structure.<br />Distinctive interfaces.</h2>
+        <div class="info-grid">
+          <div class="info-col">
+            <p class="info-desc">
+              기획 의도를 명확한 시각 언어로 풀어내고, UI/UX 설계부터 웹 퍼블리싱까지<br>완성도 높게 구현하는 웹 디자이너·퍼블리셔 <strong>김다영(DAYOUNG)</strong>입니다.
+            </p>
+            <p class="info-skills mono-caption">
+              SKILLS — FIGMA / PHOTOSHOP / HTML5 / CSS3 / JAVASCRIPT / GNUBOARD / GITHUB
+            </p>
+          </div>
+          <div class="info-col">
+            <span class="mono-caption">LET'S WORK TOGETHER</span>
+            <a href="mailto:ekdud7239@gmail.com" class="info-email">ekdud7239@gmail.com ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
