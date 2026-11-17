@@ -365,11 +365,12 @@ button {
 }
 
 .modal-topbar {
-  padding: 18px 28px;
+  padding: 16px 28px;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   background: #ffffff;
   flex-shrink: 0;
 }
@@ -377,23 +378,42 @@ button {
 .modal-meta-bar {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  min-width: 0;
 }
 
 .modal-top-title {
   font-size: 15px;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal-top-sub {
   font-size: 12px;
   color: #777777;
+  white-space: nowrap;
 }
 
 .modal-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.modal-info-toggle {
+  display: none;
+  padding: 4px 10px;
+  background: #141414;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.modal-nav-btn,
+.modal-close-btn {
+  white-space: nowrap;
 }
 
 .modal-nav-btn:hover,
@@ -404,7 +424,6 @@ button {
 .modal-close-btn {
   font-weight: 700;
 }
-
 /* ★ 상단 고정 다크 개요 헤더 */
 .modal-info-header {
   padding: 28px 40px;
@@ -580,7 +599,7 @@ button {
   }
 
   .project-card.is-active {
-    width: 78vw;
+    width: 82vw;
   }
 
   .list-view {
@@ -595,14 +614,56 @@ button {
     display: none;
   }
 
+  .modal-dialog {
+    width: 94vw;
+    height: 88vh;
+  }
+
+  .modal-topbar {
+    padding: 14px 16px;
+    gap: 8px;
+  }
+
+  .modal-meta-bar {
+    gap: 8px;
+  }
+
+  .modal-top-title {
+    font-size: 14px;
+  }
+
+  .modal-top-sub,
+  .modal-actions .btn-label {
+    display: none;
+  }
+
+  .modal-actions {
+    gap: 12px;
+  }
+
+  .modal-info-toggle {
+    display: inline-block;
+  }
+
   .modal-info-header {
+    display: none;
     grid-template-columns: 1fr;
-    padding: 20px 24px;
-    gap: 20px;
+    padding: 20px 18px;
+    gap: 18px;
+    max-height: 55vh;
+    overflow-y: auto;
+  }
+
+  .modal-info-header.is-expanded {
+    display: grid;
   }
 
   .info-main-title {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .overview-paragraphs {
+    font-size: 12px;
   }
 
   .info-grid {
