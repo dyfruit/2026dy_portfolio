@@ -78,13 +78,19 @@
         <span class="modal-top-sub" id="modalSub">UI/UX Design · 2022</span>
       </div>
       <div class="modal-actions">
-        <button type="button" class="modal-nav-btn mono-caption" id="modalPrevBtn">← PREV</button>
-        <button type="button" class="modal-nav-btn mono-caption" id="modalNextBtn">NEXT →</button>
-        <button type="button" class="modal-close-btn mono-caption" id="modalCloseBtn">CLOSE [✕]</button>
+        <!-- ★ 모바일에서만 보이는 프로젝트 설명 열기/닫기 버튼 -->
+        <button type="button" class="modal-info-toggle mono-caption" id="modalInfoToggle" aria-expanded="false">INFO
+          ▼</button>
+        <button type="button" class="modal-nav-btn mono-caption" id="modalPrevBtn" aria-label="이전 프로젝트">←<span
+            class="btn-label"> PREV</span></button>
+        <button type="button" class="modal-nav-btn mono-caption" id="modalNextBtn" aria-label="다음 프로젝트"><span
+            class="btn-label">NEXT </span>→</button>
+        <button type="button" class="modal-close-btn mono-caption" id="modalCloseBtn" aria-label="닫기"><span
+            class="btn-label">CLOSE </span>[✕]</button>
       </div>
     </div>
 
-    <!-- ★ 스크롤 시에도 상단에 고정되는 다크 프로젝트 개요 헤더 -->
+    <!-- 상단 고정 다크 개요 헤더 (모바일에서는 토글로 열기/닫기) -->
     <div class="modal-info-header" id="modalInfoHeader"></div>
 
     <div class="modal-body" id="modalBody">
@@ -94,7 +100,6 @@
     </div>
   </div>
 </div>
-
   <!-- ABOUT / CONTACT 서브 모달 -->
   <div class="modal-backdrop" id="infoModal" aria-hidden="true">
     <div class="modal-dialog info-dialog" role="dialog" aria-modal="true">
